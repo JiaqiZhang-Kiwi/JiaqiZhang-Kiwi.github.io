@@ -673,7 +673,7 @@
   <script>
     const API_KEY = "of20m5PxKXhEQdliBO3C";
     const QWEATHER_API_KEY = "bb2716f8472740e1abafdf527dca6a0a";
-    const QWEATHER_API_HOST = "https://abc1234xyz.def.qweatherapi.com";
+    const QWEATHER_API_HOST = "https://kh62b7tp3d.re.qweatherapi.com";
     let routeStyle = {
       color: "#ff3d00",
       width: 4,
@@ -1228,7 +1228,10 @@
         status.textContent = `更新时间 ${formatWeatherTime(nowData.updateTime || nowData.now.obsTime)}`;
         body.style.display = "block";
       } catch (error) {
-        status.textContent = "天气暂不可用。请确认和风 API Key、API Host 或公网访问配置。";
+        const exampleHost = QWEATHER_API_HOST.includes("abc1234xyz.def.qweatherapi.com");
+        status.textContent = exampleHost
+          ? "天气暂不可用：当前 Host 像和风文档示例，请复制控制台里的专属 API Host。"
+          : `天气暂不可用：${error.message}`;
         body.style.display = "none";
         if (manual) console.warn(error);
       }
